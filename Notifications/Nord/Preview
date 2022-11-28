@@ -1,0 +1,5 @@
+-- >> Nord: Notifications by anarchy#7132 | 866513178632126464
+-- >> Discord: https://discord.gg/GbgtPjwbQe
+_G.Config = { ["Theme"] = "Discord" }
+local Nord = loadstring(game:HttpGetAsync("https://scripts.nord.vip/NordNotifs.lua", true))();
+Nord:Notify(nil, "Loadstring worked successfully!", "success", 3);
