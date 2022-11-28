@@ -1,6 +1,6 @@
 local startTick = tick()
 
-local library = loadstring(game:HttpGet(""))({cheatname = "", gamename = ""})
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/cueshut/saves/main/octohook%20ui%20lib"))({cheatname = "", gamename = ""})
 library:init()
 
 local menu = library.NewWindow({title = "wwwwww bob", size = UDim2.new(0, 500, 0.7, 20.7)})
