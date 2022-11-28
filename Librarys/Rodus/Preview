@@ -1,0 +1,29 @@
+--A very sexy lib made by https://v3rmillion.net/member.php?action=profile&uid=1379221 , Here's the release thread https://v3rmillion.net/showthread.php?tid=1066917
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/rodus", true))() -- put this first above everything (important!)
+
+CreateMain("Rodus") -- example main
+
+CreateTab("Example Tab 1") -- example tab
+
+CreateLabel(tabs['Example Tab 1'], "Label", Color3.fromRGB(0,255,0)) -- example label
+
+CreateButton(tabs['Example Tab 1'], "A Button", "This button is clickable!",function() -- example button
+    print("Working!")
+end)
+
+CreateToggle(tabs['Example Tab 1'], "A Toggle", "This button is toggleable!",function() -- example toggle
+    print(toggled) -- toggled is the thing used to toggle <true/false>
+end)
+
+CreateSideDropButton(tabs['Example Tab 1'], "A Side Drop", {"Option1","Option2"},function(arg) -- example side drop with buttons
+	  print(arg) -- arg is used to check whats selected
+end)
+
+CreateSideDropToggle(tabs['Example Tab 1'], "A Side Drop", {"Option1","Option2"},function(arg) -- example side drop with buttons
+	  print(arg) -- arg is used to check whats selected
+end)
+
+CreateTextBox(tabs['Example Tab 1'], "A Text Box", "Text Goes Here!",function(arg) -- example text box
+	print("Text: "..arg) -- arg is used to check the text
+end)
