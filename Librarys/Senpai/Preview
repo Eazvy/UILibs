@@ -1,0 +1,14 @@
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Senpai%20Lib"))();
+
+local Window1 = library:CreateWindow("Senpai lib");
+Window1:Box("Box", function()
+    
+    end)
+
+Window1:Slider("Slider", 0, 50, 1, function()
+    
+    end)
+Window1:Button("Button",function()
+print("Pushed")
+end)
