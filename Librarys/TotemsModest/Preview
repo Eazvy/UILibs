@@ -1,0 +1,48 @@
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Xv3nm/TotemModestMenuLib/main/source')))()
+local Window = library:CreateWindow("",true)
+
+Window:NewLabel("Text Label Example")
+
+local Tab1 = Window:NewTab("Tab Example")
+
+Window:NewButton("Normal Button")
+Window:NewToggle("Normal Toggle",false,
+    function(state)
+        print(tostring(state).." Normal")
+    end)
+Window:NewSelection("Selection Example",{
+    "Selection One",
+    "Selection Two",
+    "Selection Three"
+},1,function(selection,index)
+    print(index.." : "..selection)
+end)
+Window:NewValueSelection("Value Selection",8,128,8,16,function(selection)
+    print(selection)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = selection
+end)
+
+Window:NewColorPicker("Color Picker",function(hsv,rgb) -- Color Picker returns hsv and rgb.
+    print(hsv)
+    print(rgb)
+end)
+
+Window:NewParagraph("This is a paragraph that I can type and explain my script with without being cucked. I can also edit the font size because this lib is cool like that.",0.069,14,false)
+
+Window:NewParagraph("",0.169420) -- Example of how you can use NewParagraph spacing for invisible spacing between elements.
+    
+Window:NewLabel("Dangerous/Warning Examples", true)
+local Tab2 = Window:NewTab("Dangerous Tab Example", true)
+
+Window:NewButton("Dangerous Button",function() print('danger will robinson') end,true) -- Create a 'dangerous' button
+
+Window:NewToggle("Dangerous Toggle",false, -- Create a 'dangerous' toggle
+    function(state) -- state = boolean
+        print(tostring(state).." Dangerous")
+    end,true)
+    
+Window:NewParagraph("This is a warning paragraph that I can type and explain a warning about my script. I can still edit the font size even while warning since this lib is cool like that.",0.069,14,true)
+
+Window:NewParagraph("",0.34,14,false) --This is a NewParagraph used to space
+
+Window:DestroyGuiButton()
