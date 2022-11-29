@@ -1,0 +1,29 @@
+local UILibrary = loadstring(game:HttpGet('https://raw.githubusercontent.com/ExecutionerScripts/Ui-Library/main/MainScript.lua'))()
+local MainUI = UILibrary:Load("ExecutionerX")
+local AutoFarm = MainUI:CreatePage("Farming",true,true)
+local Teleport = MainUI:CreatePage("Teleport",true,false)
+
+
+local Count = 0
+local Player = game:GetService("Players").LocalPlayer
+
+AutoFarm:CreateToggle("Autofarm Fist Strength",function(v)
+    getgenv().Fist = v
+end)
+
+AutoFarm:CreateToggle("Autofarm Body Toughness",function(v)
+    getgenv().Toughness = v
+end)
+
+AutoFarm:CreateToggle("Autofarm  Psychic Power",function(v)
+    getgenv().Psychic = v
+end)
+
+AutoFarm:CreateToggle("Autofarm  Jump Force",function(v)
+    getgenv().Force = v
+    
+end)
+
+AutoFarm:CreateToggle("Autofarm  Movement Speed",function(v)
+    getgenv().Speed = v
+end)
