@@ -1,0 +1,17 @@
+local SimpleUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/Asss"))()
+local Ui = SimpleUi:Win('Win!')
+local Chanel = Ui:Channel('Tab!')
+
+local Page = Chanel:Addpage('This is Section!')
+
+Page:Button("Button!",function()
+    print('xa')
+end)
+Page:Toggle("Toggle!",false,function(t)
+    print(t)
+end)
+Page:slider("Slider!",1,5,2,function(t)
+    print(t)
+end)
+Page:Label('Label!')
+Page:line() -- ห้ามนำไปแจกต่อนะจ๊ะ XD
