@@ -1,3 +1,2 @@
 ### Preview
-![a](https://i.ytimg.com/vi/tt7H-1acOJ8/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBngaAAuADigIMCAAQARhXIGUoIzAP&rs=AOn4CLAS92QDDv7Fy6ByDkafkXIe4zoBpg
-)
+![a](https://github.com/Eazvy/UILibs/blob/main/Librarys/Kronos/Screenshot%202022-12-04%20124837.png?raw=true)
