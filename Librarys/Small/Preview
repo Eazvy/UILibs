@@ -1,0 +1,59 @@
+getgenv().color_schemes = {
+	white_orange = { -- Original
+		header_color = Color3.fromRGB(45, 49, 66),
+		mid_color = Color3.fromRGB(191, 192, 192),
+		hover_color = Color3.fromRGB(45, 49, 66),
+		standard_color = Color3.fromRGB(79, 93, 117),
+		enabled_color = Color3.fromRGB(239, 131, 84),
+		scroll_bar_color = Color3.fromRGB(0, 0, 0),
+		text_labels_color = Color3.fromRGB(255, 255, 255),
+		background_color = Color3.fromRGB(255, 255, 255)
+	},
+	
+	custom = { -- Dark theme pog?
+		header_color = Color3.fromRGB(40, 40, 40),
+		mid_color = Color3.fromRGB(50, 50, 50),
+		hover_color = Color3.fromRGB(40, 40, 40),
+		standard_color = Color3.fromRGB(70, 70, 70),
+		enabled_color = Color3.fromRGB(239, 131, 84),
+		scroll_bar_color = Color3.fromRGB(255, 255, 255),
+		text_labels_color = Color3.fromRGB(255, 255, 255),
+		background_color = Color3.fromRGB(35, 35, 35)
+	}
+}
+
+getgenv().color_scheme = getgenv().color_schemes.custom
+
+local window = loadstring(game:HttpGet("https://raw.githubusercontent.com/deadmopose/Small-ui-library/main/Script.lua"))("example_window_name")
+
+local tab = window:new_tab("tab_name")
+
+local section = tab.new_section("section_name")
+
+section.new_button("button_info", function()
+    -- Something
+end)
+
+section.new_toggle("toggle_info", function(state)
+    -- Something
+end)
+
+section.new_text_box("text_box_info", function(value)
+    -- Something
+end)
+
+section.new_key_bind("key_bind_info" , "RightControl", function(value)
+    -- Something
+end)
+
+section.new_slider("slider_info", 0, 100, function(value)
+    -- Something
+end)
+
+section.new_dropdown("dropdown_info", {1, 2, 3}, function(value)
+    -- Something
+end)
+
+section.new_dropdown2("dropdown2_info", {1, 2, 3}, function(value)
+    -- Something
+end)
