@@ -1,0 +1,55 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NiceBBMBThai12/NBTScript/main/UI-Library-Robloxx"))()
+local window = library:Win()
+local tap1 = window:addtap("Tab1")
+local tap2 = window:addtap("Tab2")
+local page1 = tap1:addpage()
+local page2 = tap1:addpage()
+local page3 = tap1:addpage()
+local page4 = tap1:addpage()
+page1:Ti("Title")
+
+page1:Toggle("Toggle1",nil, function(value)
+    print(value)
+end)
+
+page1:Button("Button1", function(value)
+    print(value)
+end)
+
+page1:Button1("Button2", function(value)
+    print(value)
+end)
+
+local getdrop = page1:DropDown("Name DropDown","Name",{"a","b","c"}, function(value)
+    print(value)
+end)
+
+local getlable = page1:Label("Text Label")
+
+local getslider = page1:Slder("Slider",1,100,8, function(value)
+    print(value)
+end)
+
+page4:Ti("Title")
+
+page4:Toggle("Toggle1",nil, function(value)
+    print(value)
+end)
+
+page4:Button("Button1", function(value)
+    print(value)
+end)
+
+page4:Button1("Button2", function(value)
+    print(value)
+end)
+
+local getdrop = page4:DropDown("Name DropDown","Name",{"a","b","c"}, function(value)
+    print(value)
+end)
+
+local getlable = page4:Label("Text Label")
+
+local getslider = page4:Slder("Slider",1,100,8, function(value)
+    print(value)
+end)
