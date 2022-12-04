@@ -1,3 +1,3 @@
 
 ### Preview
-![a](https://github.com/Eazvy/UILibs/blob/main/Notifications/Akali/Screenshot%202022-11-28%20011356.png?raw=true)
+![a](https://github.com/Eazvy/UILibs/blob/main/Notifications/Jxereas/download-2-3-480x233.png?raw=true)
