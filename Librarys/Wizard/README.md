@@ -1,2 +1,2 @@
 # Preview 
-![a](https://github.com/Eazvy/UILibs/blob/main/Librarys/Atlas/Atlas_v1_red.png?raw=true)
+![a](https://github.com/Eazvy/UILibs/blob/main/Librarys/Wizard/Screenshot%202022-11-28%20175538.png?raw=true)
