@@ -1,0 +1,15 @@
+local SimpleGPOUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/GPOUi"))()
+local Main = SimpleGPOUi:new()
+local Tab = Main:Tap('Center')
+local page = Tab:page()
+
+local Label = page:Label("Test") -- Label:re()
+page:Button("Click!",function()
+    print("Ye")
+end)
+page:Toggle('Toggle!',false,function(t)
+    print(t)
+end)
+page:Slider('Slider!',1,10,5,false,function(t) -- Slider Bug
+    print(t)
+end) -- แกะมาได้แค่นี้ By Taco_Potato#9999 -- ห้ามนำไปแจกต่อนะจ๊ะ XD
