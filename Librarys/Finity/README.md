@@ -1,5 +1,7 @@
 Documentation:
 https://detourious.gitbook.io/project-finity/tutorials/tutorial
+
+
 MAKE SURE YOU REPLACE LIBRARY LOADSTRING WITH THIS!
 local Finity = loadstring(game:HttpGet("https://raw.githubusercontent.com/LocalSmail/Finity/main/Library"))()
 
