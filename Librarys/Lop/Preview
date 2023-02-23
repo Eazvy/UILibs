@@ -1,0 +1,36 @@
+--https://v3rmillion.net/showthread.php?tid=1084423
+local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Lopp"))()
+local Page = GUI:CreateUI("Example for Lop-UI",true,15,2,"Center")
+
+Page:addLabel("Basic stuff","um like walkspeed and jump power")
+
+Page:addSlider("WalkSpeed",16,600,function(value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+Page:addSlider("Jump Power",50,1000,function(value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+Page:addButton("Die","um you die ok",function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+
+Page:addTextBox("Teleport to Player","Input the player's name into the box","Name Here",function(value)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[value].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
+    print("Teleported to",value)
+end)
+
+local PlayerTable = {}
+
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
+    table.insert(PlayerTable,v.Name)
+end
+
+Page:addDropdown("Pick a Player",PlayerTable,function(value)
+    playervaluethign = value
+end)
+
+Page:addButton("Teleport to Player","Make sure to pick a player first",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playervaluethign].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
+end)
