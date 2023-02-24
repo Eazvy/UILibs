@@ -1,0 +1,20 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/1Coderexe/UILibs/main/BadUILib.lua"))()
+
+local main = Library:Init {
+	name = "UINAME"
+}
+
+local tab = main:CreateTab {name = "NAME"}
+
+local button = tab:Button {text = "TEXTHERE", callback}
+local label = tab:Label {text = "LABELTEXTHERE"}
+
+local slider = tab:Slider {title = "TITLEHERE", min = 0, max = 100, default = 50, callback}
+
+local button = tab:Button {title = "TITLEHERE", callback}
+
+local dropdown = tab:Dropdown{
+	title = "TITLEHERE",
+	callback = function(v) end
+}
+dropdown:Add("value", "id")
