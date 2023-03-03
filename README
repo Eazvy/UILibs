@@ -6,10 +6,12 @@ At anytime the UI Libraries within this repository may stop functioning or worki
 If you experience any issues with a UI-Lib not functioning properly due to changes in the source or owner removing it let me know.
 
 Update Logs:
+[+] Updated Apple UI Library, to original-version since the owner decided to fix.
 [+] Renamed Preview to Example
 Last Updated: 3/3/2023
 
 
-To view the source, of the Library copy the URL from the loadstring
+To view the source, of the Library copy the URL from the loadstring or from the Example if placed inside.
+
 Contact Information:
 oma#4443
