@@ -1,0 +1,445 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xandudiscord/Roblox/main/Uis/Drawing/Source.lua"))()
+local WaterMark = library:Watermark("Vestra | Exodus Styled Ui Library |"..game.MarketplaceService:GetProductInfo(game.PlaceId).Name.."")
+local Main = library:Load{
+    Name = "Vestra | Exodus Styled Ui Library",
+    SizeX = 650,
+    SizeY = 500,
+    Theme = "Fatality",
+    Extension = "json",
+    Folder = "VestraDrawingUi",
+}
+local Tab = Main:AddTab("Tab")
+
+local Section1 = Tab:AddSection{
+    Name = "Section",
+    Side = "Left",
+}
+
+local Section2 = Tab:AddSection{
+    Name = "Section 2",
+    Side = "Middle",
+}
+
+local Section3 = Tab:AddSection{
+    Name = "Section 3",
+    Side = "Right",
+}
+
+Section1:AddLabel("Label")
+
+Section1:AddButton{
+    Name = "Button",
+    Callback  = function()
+        
+    end
+}
+
+Section1:Separator("Separator")
+
+local Toggle = Section1:AddToggle{
+    Name = "Toggle",
+    Flag = "Toggle 1",
+    Default = false,
+    Callback  = function(bool)
+        
+    end
+}
+
+Toggle:AddColourPicker{
+    Default = Color3.fromRGB(255,0,0), 
+    Flag = "ToggleColourPicker1", 
+    Callback = function(color)
+        
+    end
+}
+
+Toggle:AddColourPicker{
+    Default = Color3.fromRGB(0,0,255), 
+    Flag = "ToggleColourPicker2", 
+    Callback = function(color)
+        
+    end
+}
+local Toggle2 = Section1:AddToggle{
+    Name = "Toggle",
+    Flag = "ToggleWithKeybind",
+    --Default = true,
+    Callback  = function(bool)
+        
+    end
+}
+
+Toggle2:AddKeybind{
+    Default = Enum.KeyCode.A,
+    Blacklist = {Enum.UserInputType.MouseButton1},
+    Flag = "Toggle 2 Keybind 1",
+    Mode = "Toggle", -- mode to nil if u dont want it to toggle the toggle
+    Callback = function(key, fromsetting)
+        if fromsetting then
+            print("Toggle 2 Keybind 1 is now " .. tostring(key))
+        else
+            print("Toggle 2 Keybind 1 was pressed")
+        end
+    end
+}
+
+Section1:AddTextBox{
+    Name = "Box",
+    --Default = "hi",
+    Placeholder = "Box Placeholder",
+    Flag = "Box 1",
+    Callback = function(text)
+        print("Box 1 is now " .. text)
+    end
+}
+
+Section1:AddSlider{
+    Name = "Slider",
+    Text = "[value]/1",
+    --Default = 0.1,
+    Min = 0,
+    Max = 1,
+    Float = 0.1,
+    Flag = "Slider 1",
+    Callback = function(value)
+        print("Slider 1 is now " .. value)
+    end
+}
+
+Section1:AddDropdown{
+    Name = "Dropdown",
+    --Default = {"Option 1"},
+    --Scrollable = true,
+    --ScrollingMax = 5,
+    Max = 3, -- makes it multi
+    Content = {
+        "Option 1",
+        "Option 2",
+        "Option 3"
+    },
+    Flag = "Multi dropdown 1",
+    Callback = function(option)
+        print("Multi dropdown 1 is now " .. table.concat(option, ", "))
+    end
+}
+
+Section1:AddKeybind{
+    Name = "Keybind",
+    --Default = Enum.KeyCode.A,
+    --Blacklist = {Enum.UserInputType.MouseButton1, Enum.UserInputType.MouseButton2},
+    Flag = "Keybind 1",
+    Callback = function(key, fromsetting)
+        if fromsetting then
+            print("Keybind 1 is now " .. tostring(key))
+        else
+            print("Keybind 1 was pressed")
+        end
+    end
+}
+
+local Configs = Main:AddTab("Configuration")
+
+local ConfigSection = Configs:AddSection{
+    Name = "Configs",
+    Side = "Left"
+}
+
+local ConfigList = ConfigSection:AddDropdown{
+    Name = "Configs",
+    Content = library:GetConfigs(),
+    Flag = "Config Dropdown"
+}
+
+library:ConfigIgnore("Config Dropdown")
+
+ConfigSection:AddButton{
+    Name = "Load Config",
+    Callback = function()
+        library:LoadConfig(library.flags["Config Dropdown"])
+    end
+}
+
+ConfigSection:AddButton{
+    Name = "Delete Config",
+    Callback = function()
+        library:DeleteConfig(library.flags["Config Dropdown"]) 
+        ConfigList:Refresh(library:GetConfigs())
+    end
+}
+
+ConfigSection:AddTextBox{
+    Name = "Config Name",
+    Placeholder = "Config Name",
+    Flag = "Config Name"
+}
+
+library:ConfigIgnore("Config Name")
+
+ConfigSection:AddButton{
+    Name = "Save Config",
+    Callback = function()
+        library:SaveConfig(library.flags["Config Dropdown"])
+        ConfigList:Refresh(library:GetConfigs())
+    end
+}
+
+ConfigSection:AddButton{
+    Name = "Create Config",
+    Callback = function()
+        library:SaveConfig(library.flags["Config Name"])
+        ConfigList:Refresh(library:GetConfigs())
+    end
+}
+
+local Settings = Configs:AddSection{
+    Name = "Water Mark", 
+    Side = "Left"
+}
+
+Settings:AddToggle{
+    Name = "Enable",
+    Flag = "EnableWaterMark",
+    Default = true,
+    Callback  = function(state)
+        WaterMark:Visible(state)
+    end
+}
+Settings:AddDropdown{
+    Name = "Position",
+    Default = "Left",
+    Content = {"Left","Right"},
+    Flag = "WatermarkPosition",
+    Callback = function(option)
+        if option == "Left" then
+            WaterMark:Position(16,16)
+        elseif option == "Right" then
+            WaterMark:Position(workspace.CurrentCamera.ViewportSize.X - 313 ,16)
+        end
+    end
+}
+
+local Themes = Configs:AddSection{
+    Name = "Theme", 
+    Side = "Middle"
+}
+
+local ThemeTable = {}
+
+local themelist = Themes:AddDropdown{
+    Name = "Theme",
+    Default = library.CurrentTheme,
+    Content = library:GetThemes(),
+    Flag = "Theme Dropdown",
+    Callback = function(option)
+        if option then
+            library:SetTheme(option)
+            for option, picker in next, ThemeTable do
+                picker:Set(library.theme[option])
+            end
+        end
+    end
+}
+
+library:ConfigIgnore("Theme Dropdown")
+
+local namebox = Themes:AddTextBox{
+    Name = "Custom Theme Name",
+    Placeholder = "Custom Theme",
+    Flag = "Custom Theme"
+}
+
+library:ConfigIgnore("Custom Theme")
+
+Themes:AddButton{
+    Name = "Create Custom Theme",
+    Callback = function()
+        if library:SaveCustomTheme(library.flags["Custom Theme"]) then
+            themelist:Refresh(library:GetThemes())
+            namebox:Set("")
+        end
+    end
+}
+
+local customtheme = Configs:AddSection{
+    Name = "Custom Theme", 
+    Side = "Middle"
+}
+
+ThemeTable["Accent"] = customtheme:AddColourPicker{
+    Name = "Accent",
+    Default = library.theme["Accent"],
+    Flag = "Accent",
+    Callback = function(color)
+        library:ChangeThemeOption("Accent", color)
+    end
+}
+
+library:ConfigIgnore("Accent")
+
+ThemeTable["Window Background"] = customtheme:AddColourPicker{
+    Name = "Window Background",
+    Default = library.theme["Window Background"],
+    Flag = "Window Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Window Background", color)
+    end
+}
+
+library:ConfigIgnore("Window Background")
+
+ThemeTable["Window Border"] = customtheme:AddColourPicker{
+    Name = "Window Border",
+    Default = library.theme["Window Border"],
+    Flag = "Window Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Window Border", color)
+    end
+}
+
+library:ConfigIgnore("Window Border")
+
+ThemeTable["Tab Background"] = customtheme:AddColourPicker{
+    Name = "Tab Background",
+    Default = library.theme["Tab Background"],
+    Flag = "Tab Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Background", color)
+    end
+}
+
+library:ConfigIgnore("Tab Background")
+
+ThemeTable["Tab Border"] = customtheme:AddColourPicker{
+    Name = "Tab Border",
+    Default = library.theme["Tab Border"],
+    Flag = "Tab Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Border", color)
+    end
+}
+
+library:ConfigIgnore("Tab Border")
+
+ThemeTable["Tab Toggle Background"] = customtheme:AddColourPicker{
+    Name = "Tab Toggle Background",
+    Default = library.theme["Tab Toggle Background"],
+    Flag = "Tab Toggle Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Toggle Background", color)
+    end
+}
+
+library:ConfigIgnore("Tab ToggleBackground")
+
+ThemeTable["Section Background"] = customtheme:AddColourPicker{
+    Name = "Section Background",
+    Default = library.theme["Section Background"],
+    Flag = "Section Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Section Background", color)
+    end
+}
+
+library:ConfigIgnore("Section Background")
+
+ThemeTable["Section Border"] = customtheme:AddColourPicker{
+    Name = "Section Border",
+    Default = library.theme["Section Border"],
+    Flag = "Section Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Section Border", color)
+    end
+}
+
+library:ConfigIgnore("Section Border")
+
+ThemeTable["Text"] = customtheme:AddColourPicker{
+    Name = "Text",
+    Default = library.theme["Text"],
+    Flag = "Text",
+    Callback = function(color)
+        library:ChangeThemeOption("Text", color)
+    end
+}
+
+library:ConfigIgnore("Text")
+
+ThemeTable["Disabled Text"] = customtheme:AddColourPicker{
+    Name = "Disabled Text",
+    Default = library.theme["Disabled Text"],
+    Flag = "Disabled Text",
+    Callback = function(color)
+        library:ChangeThemeOption("Disabled Text", color)
+    end
+}
+
+library:ConfigIgnore("Disabled Text")
+
+ThemeTable["Object Background"] = customtheme:AddColourPicker{
+    Name = "Object Background",
+    Default = library.theme["Object Background"],
+    Flag = "Object Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Object Background", color)
+    end
+}
+
+library:ConfigIgnore("Object Background")
+
+ThemeTable["Object Border"] = customtheme:AddColourPicker{
+    Name = "Object Border",
+    Default = library.theme["Object Border"],
+    Flag = "Object Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Object Border", color)
+    end
+}
+
+library:ConfigIgnore("Object Border")
+
+ThemeTable["Dropdown Background"] = customtheme:AddColourPicker{
+    Name = "Dropdown Background",
+    Default = library.theme["Dropdown Background"],
+    Flag = "Dropdown Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Dropdown Background", color)
+    end
+}
+
+library:ConfigIgnore("Dropdown Background")
+
+local Settings = Configs:AddSection{
+    Name = "Settings", 
+    Side = "Right"
+}
+
+Settings:AddKeybind{
+    Name = "Toggle Ui",
+    Flag = "Toggle Ui",
+    Default = Enum.KeyCode.RightControl,
+    Blacklist = {Enum.UserInputType.MouseButton1, Enum.UserInputType.MouseButton2, Enum.UserInputType.MouseButton3},
+    Callback = function(i,fromsetting)
+        if not fromsetting then
+            library:Close()
+        end
+    end
+}
+
+Settings:AddKeybind{
+    Name = "Panic Mode",
+    Flag = "PanicMode",
+    Default = Enum.KeyCode.F10,
+    Blacklist = {Enum.UserInputType.MouseButton1,Enum.UserInputType.MouseButton2,Enum.UserInputType.MouseButton3},
+    Callback = function(i,fromsetting)
+        if not fromsetting then
+        library:Unload()
+        end
+    end
+}
+
+Settings:AddButton{
+    Name = "Unload Ui Library",
+    Callback  = function()
+        library:Unload()
+    end
+}
