@@ -59,7 +59,7 @@ local playerlist = {} for i,v in pairs(game.Players:GetPlayers())do if v ~= game
 
 local esp, esp_renderstep, framework = loadstring(game:HttpGet("https://raw.githubusercontent.com/dohmai/Tokyo/main/Libraries/ESP"))();
 -- [Libary] ------------------------------------------------------------------------------------------------------------------------------------------------------------
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/dohmai/Tokyo-V2/main/Libaries/UI"))({cheatname = "Tokyo", gamename = "Da Hood"})
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/dohmai/Tokyo/main/Libraries/UI"))({cheatname = "Tokyo", gamename = "Da Hood"})
 library:init()
 -- [Window UI] ------------------------------------------------------------------------------------------------------------------------------------------------------------
 local menu = library.NewWindow({title = "Tokyo | Da Hood", size = UDim2.new(0, 510, 0.6, 6)})
