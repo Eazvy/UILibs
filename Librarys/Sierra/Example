@@ -1,0 +1,679 @@
+-- [Table] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- [Variables] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local m_thread = task do setreadonly(m_thread, false) 
+
+function m_thread.spawn_loop(p_time, p_callback) m_thread.spawn(function()
+
+while true do p_callback() m_thread.wait(p_time) end end) end setreadonly(m_thread, true) end 
+-- [Locals] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- [Libary] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local library, pointers = loadstring(game:HttpGet("https://raw.githubusercontent.com/dohmai/Sierra/main/UI"))() do
+-- [Window] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local window = library:New({name = "Sierra",size = Vector2.new(508, 662),Accent = Color3.fromRGB(59, 84, 154)})
+-- [Pages] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local Combat = window:Page({name = "Combat", size = 80}) 
+local Player = window:Page({name = "Player", size = 80}) 
+local Visuals = window:Page({name = "Visuals", size = 80})
+local Misc = window:Page({name = "Misc", size = 80})
+local Teleports = window:Page({name = "Teleports", size = 80})
+-- [Combat Sections] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local Camlock, CamlockSettings, CamlockVisuals = Combat:MultiSection({sections = {"Camlock", "Settings", "Visuals"}, side = "left", size = 324})
+local TargetAim, TargetAimSettings, TargetAimVisuals = Combat:MultiSection({sections = {"Target Aim", "Settings", "Visuals"}, side = "right", size = 324})
+local SilentAim, SilentAimSettings, SilentAimVisuals = Combat:MultiSection({sections = {"Silent Aim", "Settings", "Visuals"}, side = "left", size = 262})
+local TriggerBot = Combat:Section({name = "Trigger Bot", side = "Right"})
+-- [Camlock Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+Camlock:Toggle({Name = "Enable",Default  = false,Callback = function(x)
+    
+end})
+
+:Keybind({Name = "Camlock",mode = "Toggle", KeybindName = "Camlock", callback = function(x) Eclipse_Settins.Camlock.keybind = x end})
+
+Camlock:Toggle({Name = "Smoothness",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Auto Prediciton",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Resolver",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Wall Check",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Knocked Check",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Grabbed Check",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Friend Check",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Crew Check",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Disable On Knock",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Toggle({Name = "Reload On Knock",Default  = false,Callback = function(x)
+    
+end})
+
+Camlock:Dropdown({Name = "Aiming Part", options = {"HumanoidRootPart", "LowerTorso", "Head", "UpperTorso"}, def = "HumanoidRootPart", Callback=function(x)
+    
+end})
+
+Camlock:Textbox({Name = "Prediction",placeholder = "Prediction", Callback=function(x)
+    
+end})
+
+Camlock:Textbox({Name = "Smoothness",placeholder = "Smoothness", Callback=function(x)
+    
+end})
+-- [CamlockSettings Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+CamlockSettings:Toggle({Name = "Enable FOV",Default  = false,Callback = function(x)
+    
+end})
+
+CamlockSettings:Toggle({Name = "Enable Dead Zone",Default  = false,Callback = function(x)
+    
+end})
+
+local FOV = CamlockSettings:Toggle({Name = "Show FOV",Default  = false,Callback = function(x)
+    
+end})
+
+FOV:Colorpicker({Default = Color3.fromRGB(59, 84, 154), transparency = 0,Callback = function(x)
+    
+end})
+
+local DeadZoneFOV = CamlockSettings:Toggle({Name = "Show Dead Zone",Default  = false,Callback = function(x)
+    
+end})
+
+CamlockSettings:Toggle({Name = "Center",Default  = false,Callback = function(x)
+    
+end})
+
+DeadZoneFOV:Colorpicker({Default = Color3.fromRGB(59, 84, 154), transparency = 0,Callback = function(x)
+    
+end})
+
+CamlockSettings:Slider({name = "FOV Size", min = 0, max = 360.0, Default = 70.0, suffix = "",Callback = function(x)
+    
+end})
+
+CamlockSettings:Slider({name = "Dead Zone Size", min = 0, max = 360.0, Default = 70.0, suffix = "",Callback = function(x)
+    
+end})
+-- [CamlockVisuals Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local Tracer = CamlockVisuals:Toggle({Name = "Tracer",Default  = false,Callback = function(x)
+    
+end})
+
+Tracer:Colorpicker({Default = Color3.fromRGB(59, 84, 154), transparency = 0,Callback = function(x)
+    
+end})
+
+local Dot = CamlockVisuals:Toggle({Name = "Dot Target",Default  = false,Callback = function(x)
+    
+end})
+
+Dot:Colorpicker({Default = Color3.fromRGB(59, 84, 154), transparency = 0,Callback = function(x)
+    
+end})
+
+local Highlight = CamlockVisuals:Toggle({Name = "Highlight Target",Default  = false,Callback = function(x)
+    
+end})
+
+Highlight:Colorpicker({Default = Color3.fromRGB(59, 84, 154), transparency = 0,Callback = function(x)
+    
+end})
+
+CamlockVisuals:Slider({name = "Tracer Thickness", min = 0, max = 10.0, Default = 70.0, suffix = "",Callback = function(x)
+    
+end})
+
+CamlockVisuals:Slider({name = "Dot Size", min = 0, max = 10.0, Default = 70.0, suffix = "",Callback = function(x)
+    
+end})
+-- [Silent Aim Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+SilentAim:Toggle({Name = "Enable",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Auto Prediciton",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Resolver",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Wall Check",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Knocked Check",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Grabbed Check",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Friend Check",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Crew Check",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Toggle({Name = "Reload On Knock",Default  = false,Callback = function(x)
+    
+end})
+
+SilentAim:Dropdown({Name = "Aiming Part", options = {"HumanoidRootPart", "LowerTorso", "Head", "UpperTorso"}, def = "HumanoidRootPart", Callback=function(x)
+    
+end})
+
+SilentAim:Textbox({Name = "Prediction",placeholder = "Prediction", Callback=function(x)
+    
+end})
+-- [Target Aim Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+TargetAim:Toggle({Name = "Enable",Default  = false,Callback = function(x)
+    
+end})
+
+:Keybind({Name = "Target Aim",mode = "Toggle", KeybindName = "Target Aim", callback = function(x) Eclipse_Settins.Camlock.keybind = x end})
+
+TargetAim:Toggle({Name = "Auto Prediciton",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Look At",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "View At",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Resolver",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Wall Check",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Knocked Check",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Grabbed Check",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Friend Check",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Crew Check",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Disable On Knock",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Toggle({Name = "Reload On Knock",Default  = false,Callback = function(x)
+    
+end})
+
+TargetAim:Dropdown({Name = "Aiming Part", options = {"HumanoidRootPart", "LowerTorso", "Head", "UpperTorso"}, def = "HumanoidRootPart", Callback=function(x)
+    
+end})
+
+TargetAim:Textbox({Name = "Prediction",placeholder = "Prediction", Callback=function(x)
+    
+end})
+-- TriggerBot Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+TriggerBot:Toggle({Name = "Enable",Default  = false,Callback = function(x)
+    
+end})
+
+:Keybind({Name = "Trigger Bot",mode = "Toggle", KeybindName = "Trigger Bot", callback = function(x) Eclipse_Settins.Camlock.keybind = x end})
+
+TriggerBot:Toggle({Name = "Wall Check",Default  = false,Callback = function(x)
+    
+end})
+
+TriggerBot:Toggle({Name = "Knocked Check",Default  = false,Callback = function(x)
+    
+end})
+
+TriggerBot:Toggle({Name = "Grabbed Check",Default  = false,Callback = function(x)
+    
+end})
+
+TriggerBot:Toggle({Name = "Friend Check",Default  = false,Callback = function(x)
+    
+end})
+
+TriggerBot:Toggle({Name = "Crew Check",Default  = false,Callback = function(x)
+    
+end})
+
+TriggerBot:Slider({name = "Delay", min = 0, max = 100.0, Default = 70.0, suffix = "ms",Callback = function(x)
+    
+end})
+-- [Player Sections] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local Exploits = Player:Section({name = "Exploits"})
+local Movement = Player:Section({name = "Movement"})
+local AntiAim = Player:Section({name = "Anti Aim", side = "Right"})
+-- [Player Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-- [Visuals Sections] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local ESP = Visuals:Section({name = "ESP"})
+local World = Visuals:Section({name = "World"})
+local FOV = Visuals:Section({name = "FOV Aim", side = "Right"})
+-- [Visuals Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- [Misc Sections] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local ESP = Misc:Section({name = "Character"})
+local World = Misc:Section({name = "World"})
+local FOV = Misc:Section({name = "FOV Aim", side = "Right"})
+-- [Misc Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- [Teleports Sections] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+local ESP = Teleports:Section({name = "ESP"})
+local World = Teleports:Section({name = "World"})
+local FOV = Teleports:Section({name = "FOV Aim", side = "Right"})
+-- [Teleports Tabs] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- [Important Shit] ------------------------------------------------------------------------------------------------------------------------------------------------------------
+    local settings_page = window:Page({name = "Settings", side = "Right", size = 74}) do
+    local config_section = settings_page:Section({name = "Configuration", side = "Right"}) do
+            local current_list = {}
+            local function update_config_list()
+                local list = {}
+                for idx, file in ipairs(listfiles("Linux/configs")) do
+                    local file_name = file:gsub("Linux/configs\\",""):gsub(".txt","") list[#list + 1] = file_name end
+                local is_new = #list ~= #current_list
+                if not is_new then
+                    for idx, file in ipairs(list) do
+                        if file ~= current_list[idx] then is_new = true break end end end
+                if is_new then current_list = list pointers["settings/configuration/list"]:UpdateList(list, false, true) end end
+            config_section:Listbox({pointer = "settings/configuration/list"})
+            config_section:Textbox({
+                    pointer = "settings/configuration/name",
+                    placeholder = "Config Name",
+                    text = "",
+                    middle = true,
+                    reset_on_focus = false})
+            config_section:ButtonHolder({Buttons = {{"Create",  function()local config_name = pointers["settings/configuration/name"]:get()
+                if config_name == "" or isfile("Linux/configs/" .. config_name .. ".txt") then return end writefile("Linux/configs/" .. config_name .. ".txt","") update_config_list() end}, {"Delete", function()
+                local selected_config = pointers["settings/configuration/list"]:get()[1][1]
+                if selected_config then
+                    delfile("Linux/configs/" .. selected_config .. ".txt")
+                    update_config_list()
+                end
+                end}}})
+            config_section:ButtonHolder({Buttons = {{"Load", function()
+                local selected_config = pointers["settings/configuration/list"]:get()[1][1]
+                if selected_config then
+                    window:LoadConfig(readfile("Linux/configs/" .. selected_config .. ".txt"))
+                end
+            end}, {"Save", function()
+                local selected_config = pointers["settings/configuration/list"]:get()[1][1]
+                if selected_config then
+                    writefile("Linux/configs/" .. selected_config .. ".txt", window:GetConfig())
+                end
+            end}}}) update_config_list() end
+
+    local menu_section = settings_page:Section({name = "Menu"}) do
+        local function gs(a)
+            return game:GetService(a)
+        end
+        local actionservice = gs("ContextActionService")
+        menu_section:Keybind({
+                pointer = "settings/menu/bind",
+                name = "Open / Close",
+                default = Enum.KeyCode.Z,
+                callback = function(p_state)
+                    window.uibind = p_state
+                end
+            }
+        )
+       
+        menu_section:Toggle({
+                pointer = "settings/menu/watermark",
+                name = "Watermark",
+                default = true,
+                callback = function(p_state)
+                    window.watermark:Update("Visible", p_state)
+                end})
+        menu_section:Toggle(
+            {
+                pointer = "settings/menu/keybind_list",
+                name = "Keybind List",
+                default = true,
+                callback = function(p_state)
+                    window.keybindslist:Update("Visible", p_state)
+                end
+            }
+        )
+
+
+        menu_section:Button(
+            {
+                name = "Unload",
+                confirmation = true,
+                callback = function()
+                    window:Unload()
+                end
+            }
+        )
+
+
+    end
+
+    local other_section = settings_page:Section({name = "Other", side = "Right"})
+    do
+        other_section:Button(
+            {
+                name = "Invite Script",
+                callback = function()
+                    setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ',"' .. game.JobId .. '")')
+                end})
+        other_section:Button({
+                name = "Rejoin Server",
+                confirmation = true,
+                callback = function()
+                    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+                end
+            }
+        )
+    end
+local themes_section = settings_page:Section({name = "Themes", side = "Left"}) do
+
+        
+        themes_section:Dropdown({
+                Name = "Theme",
+                Options = {"ZeeBot","Nekocheat Blue", "Abyss", "One Tap", "Spotify", "Twitch","Nekocheat","Zeebot v2", "Fatality","Solix", "Interweb$", "Abyss V2", "Anorix", "Octel", "Entropy", "AimWare", "x15","Gamesense", "Kitten Bot", "BitchBot", "BubbleGum", "Slime"},
+                Default = "ZeeBot",
+                Pointer = "themes/xd/",
+                callback = function(callback)
+                    if callback == "Nekocheat Blue" then
+                    library:UpdateColor("Accent", Color3.fromRGB(0, 247, 255))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(21, 21, 21))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(21, 21, 21))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    
+                    elseif callback == "Twitch" then
+                    library:UpdateColor("Accent", Color3.fromRGB(169,112,255))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(31,31,35))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(14,14,14))
+                        library:UpdateColor("outline", Color3.fromRGB(10,10,10))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    
+                     elseif callback == "Fatality" then
+                    library:UpdateColor("Accent", Color3.fromRGB(197,7,83))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(29,23,66)) --29,23,66
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25,19,53)) --29,23,66
+                        library:UpdateColor("outline", Color3.fromRGB(10,10,10))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    
+                    
+                    
+                    elseif callback == "Spotify" then
+                        library:UpdateColor("Accent", Color3.fromRGB(103,212,91))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(30,30,30))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25, 25, 25))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(46, 46, 46))
+                     
+                     
+                     
+                     
+                     elseif callback == "One Tap" then
+                        library:UpdateColor("Accent", Color3.fromRGB(221,168,93))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(44,48,55))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(31,33,37))
+                        library:UpdateColor("outline", Color3.fromRGB(25,25,25))
+                        library:UpdateColor("inline", Color3.fromRGB(78,81,88))
+                    
+                    
+                                     elseif callback == "Nekocheat" then
+                    library:UpdateColor("Accent", Color3.fromRGB(226, 30, 112))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(21, 21, 21))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(21, 21, 21))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    
+                    
+                    
+                    elseif callback == "AimWare" then
+                        library:UpdateColor("Accent", Color3.fromRGB(250, 47, 47))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(41, 40, 40))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(38, 38, 38))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(46, 46, 46))
+                   
+                    elseif callback == "Interweb$" then
+                        library:UpdateColor("Accent", Color3.fromRGB(242, 150, 92))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(22,12,46))--22,12,46
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(17,8,31))--17,8,31
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(46, 46, 46))
+                   
+                    elseif callback == "Abyss" then
+                        library:UpdateColor("Accent", Color3.fromRGB(81, 72, 115))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(41, 41, 41))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(31, 30, 30))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                        
+                        elseif callback == "Abyss V2" then
+                        library:UpdateColor("Accent", Color3.fromRGB(161, 144, 219))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(27, 27, 27))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(18, 18, 18))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                        
+                        elseif callback == "Gamesense" then
+                        library:UpdateColor("Accent", Color3.fromRGB(167,217,77))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(25, 25, 25))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(16, 16, 16))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                   
+                    elseif callback == "Kitten Bot" then
+                        library:UpdateColor("Accent", Color3.fromRGB(100, 61, 200))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(30, 30, 30))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25, 25, 25))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    elseif callback == "Ubuntu" then
+                        library:UpdateColor("Accent", Color3.fromRGB(226, 88, 30))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(62,62,62))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(50, 50, 50))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                    
+                    elseif callback == "BitchBot" then
+                        library:UpdateColor("Accent", Color3.fromRGB(126,72,163))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(62,62,62))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(50, 50, 50))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(50, 50, 50))
+                        
+                    elseif callback == "Anorix" then
+                        library:UpdateColor("Accent", Color3.fromRGB(105,156,164))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(51,51,51))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(41,41,41))
+                        library:UpdateColor("outline", Color3.fromRGB(37, 37, 37))
+                        library:UpdateColor("inline", Color3.fromRGB(39, 39, 39))
+                        
+                        
+                         elseif callback == "Zeebot v2" then
+                        library:UpdateColor("Accent", Color3.fromRGB(117,96,175))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(51,51,51))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(41,41,41))
+                        library:UpdateColor("outline", Color3.fromRGB(37, 37, 37))
+                        library:UpdateColor("inline", Color3.fromRGB(39, 39, 39))
+                        
+                        
+                        
+                        
+                    elseif callback == "BubbleGum" then
+                        library:UpdateColor("Accent", Color3.fromRGB(169, 83, 245))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(22, 12, 46))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(17, 8, 31))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(46, 46, 46))
+                    
+                    elseif callback == "Slime" then
+                        library:UpdateColor("Accent", Color3.fromRGB(64, 247, 141))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(22, 12, 46))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(17, 8, 31))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(46, 46, 46))
+                    
+                    elseif callback == "Octel" then
+                        library:UpdateColor("Accent", Color3.fromRGB(255, 201, 254))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(32, 32, 32))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25, 25, 25))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(30, 28, 30))
+     
+                    elseif callback == "Entropy" then
+                        library:UpdateColor("Accent", Color3.fromRGB(135,206,250))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(45,43,50)) -- 43,41,48
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(44,41,48))
+                        library:UpdateColor("outline", Color3.fromRGB(35,35,35))
+                        library:UpdateColor("inline", Color3.fromRGB(50,50,50))
+     
+                    elseif callback == "x15" then
+                        library:UpdateColor("Accent", Color3.fromRGB(92,57,152))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(32, 32, 32))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25, 25, 25))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(30, 28, 30))
+     
+                    elseif callback == "ZeeBot" then
+                        library:UpdateColor("Accent", Color3.fromRGB(59, 84, 154))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(32, 33, 32))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(25, 26, 25))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(30, 31, 30))
+     
+     
+                    elseif callback == "Solix" then
+                        library:UpdateColor("Accent", Color3.fromRGB(120, 93, 166))
+                        library:UpdateColor("lightcontrast", Color3.fromRGB(33,33,33))
+                        library:UpdateColor("darkcontrast", Color3.fromRGB(24,24,24))
+                        library:UpdateColor("outline", Color3.fromRGB(0, 0, 0))
+                        library:UpdateColor("inline", Color3.fromRGB(30, 29, 30)) end end})
+        
+        
+        themes_section:Colorpicker(
+            {
+                pointer = "themes/menu/accent",
+                name = "Accent",
+                default = Color3.fromRGB(59, 84, 154),
+                callback = function(p_state)
+                    library:UpdateColor("Accent", p_state)
+                end
+            }
+        )
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Light Contrast",
+                default = Color3.fromRGB(30, 30, 30),
+                callback = function(p_state)
+                    library:UpdateColor("lightcontrast", p_state)
+                end
+            }
+        )
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Dark Constrast",
+                default = Color3.fromRGB(25, 25, 25),
+                callback = function(p_state)
+                    library:UpdateColor("darkcontrast", p_state)
+                end
+            }
+        )
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Outline",
+                default = Color3.fromRGB(0, 0, 0),
+                callback = function(p_state)
+                    library:UpdateColor("outline", p_state)
+                end
+            }
+        )
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Inline",
+                default = Color3.fromRGB(50, 50, 50),
+                callback = function(p_state)
+                    library:UpdateColor("inline", p_state)
+                end
+            }
+        )
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Text Color",
+                default = Color3.fromRGB(255, 255, 255),
+                callback = function(p_state)
+                    library:UpdateColor("textcolor", p_state)
+                end
+            }
+        )
+        
+        themes_section:Colorpicker(
+            {
+                pointer = "settings/menu/accent",
+                name = "Text Border",
+                default = Color3.fromRGB(0, 0, 0),
+                callback = function(p_state)
+                    library:UpdateColor("textborder", p_state)
+                end})
+        themes_section:Colorpicker({
+                pointer = "settings/menu/accent",
+                name = "Cursor Outline",
+                default = Color3.fromRGB(255, 255, 255),
+                callback = function(p_state)
+                    library:UpdateColor("cursoroutline", p_state)
+                end})end end window.uibind = Enum.KeyCode.Z 
+window:Initialize()
+end
+-- [Functions] ------------------------------------------------------------------------------------------------------------------------------------------------------------
