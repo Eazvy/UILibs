@@ -1,0 +1,10 @@
+local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iHavoc101/Genesis-Studios/main/UserInterface/Luminosity.lua", true))()
+
+local Window = Luminosity.new("Luminosity UI", "v1.0.0", 4370345701)
+
+local Tab1 = Window.Tab("Tab 1", 6026568198)
+local Folder = Tab1.Folder("Options", "A bunch of options you can use")
+
+Folder.Button("Button", "Click", function()
+print("Button Clicked")
+end)
