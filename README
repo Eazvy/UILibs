@@ -6,13 +6,10 @@ At anytime the UI Libraries within this repository may stop functioning or worki
 If you experience any issues with a UI-Lib not functioning properly due to changes in the source or owner removing it let me know.
 
 Update Logs:
-[+] Added 32+ new UI Librarys!
-[+] Added 2+ new Notification Library!
-[+] Added Gamesneeze back! / w/ Preview 
+[+] Added Keystrokes UI (Utility)
+[+] Added 1+ Drawing Notification Lib!
 
-[?] Edited Splix replaced it with real one
-[?] Renamed Preview to Example
-Last Updated: 3/7/2023
+Last Updated: 5/1/23
 
 
 To view the source, of the Library copy the URL from the loadstring or code from Example
